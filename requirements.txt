@@ -1,0 +1,4 @@
+flask_ngrok
+Flask
+numpy
+opencv-python
