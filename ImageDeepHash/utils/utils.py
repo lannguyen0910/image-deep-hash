@@ -1,6 +1,8 @@
+import tensorflow as tf
 from binascii import unhexlify
 
-def long_to_bytes (val, endianness='big'):
+
+def long_to_bytes(val, endianness='big'):
     """
     Use :ref:`string formatting` and :func:`~binascii.unhexlify` to
     convert ``val``, a :func:`long`, to a byte :func:`str`.
@@ -33,3 +35,34 @@ def long_to_bytes (val, endianness='big'):
         s = s[::-1]
 
     return s
+
+
+def load_backbone(name="ResNet50", input_shape=(224, 224, 3), classes=128):
+    if name == "Xception":
+        return tf.keras.applications.Xception(include_top=False, weights=None, classes=classes,
+                                              input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "VGG16":
+        return tf.keras.applications.VGG16(include_top=False, weights=None, classes=classes,
+                                           input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "VGG19":
+        return tf.keras.applications.VGG19(include_top=False, weights=None, classes=classes,
+                                           input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "ResNet50":
+        return tf.keras.applications.ResNet50(include_top=False, weights=None, classes=classes,
+                                              input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "ResNet101":
+        return tf.keras.applications.ResNet101(include_top=False, weights=None, classes=classes,
+                                               input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "ResNet152":
+        return tf.keras.applications.ResNet152(include_top=False, weights=None, classes=classes,
+                                               input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "ResNet50V2":
+        return tf.keras.applications.ResNet50V2(include_top=False, weights=None, classes=classes,
+                                                input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "ResNet101V2":
+        return tf.keras.applications.ResNet101V2(include_top=False, weights=None, classes=classes,
+                                                 input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "ResNet152V2":
+        return tf.keras.applications.ResNet152V2(include_top=False, weights=None, classes=classes,
+                                                 input_shape=input_shape, classifier_activation='sigmoid')
+    return None
