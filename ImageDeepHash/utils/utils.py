@@ -96,24 +96,24 @@ def load_backbone(name="ResNet50", input_shape=(224, 224, 3), classes=128):
         return tf.keras.applications.EfficientNetB0(include_top=True, weights=None, classes=classes,
                                                     input_shape=input_shape, classifier_activation='sigmoid')
     if name == "EfficientNetB1":
-        return tf.keras.applications.EfficientNetB0(include_top=True, weights=None, classes=classes,
+        return tf.keras.applications.EfficientNetB1(include_top=True, weights=None, classes=classes,
                                                     input_shape=input_shape, classifier_activation='sigmoid')
     if name == "EfficientNetB2":
-        return tf.keras.applications.EfficientNetB0(include_top=True, weights=None, classes=classes,
+        return tf.keras.applications.EfficientNetB2(include_top=True, weights=None, classes=classes,
                                                     input_shape=input_shape, classifier_activation='sigmoid')
     if name == "EfficientNetB3":
-        return tf.keras.applications.EfficientNetB0(include_top=True, weights=None, classes=classes,
+        return tf.keras.applications.EfficientNetB3(include_top=True, weights=None, classes=classes,
                                                     input_shape=input_shape, classifier_activation='sigmoid')
     if name == "EfficientNetB4":
-        return tf.keras.applications.EfficientNetB0(include_top=True, weights=None, classes=classes,
+        return tf.keras.applications.EfficientNetB4(include_top=True, weights=None, classes=classes,
                                                     input_shape=input_shape, classifier_activation='sigmoid')
     if name == "EfficientNetB5":
-        return tf.keras.applications.EfficientNetB0(include_top=True, weights=None, classes=classes,
+        return tf.keras.applications.EfficientNetB5(include_top=True, weights=None, classes=classes,
                                                     input_shape=input_shape, classifier_activation='sigmoid')
     if name == "EfficientNetB6":
-        return tf.keras.applications.EfficientNetB0(include_top=True, weights=None, classes=classes,
+        return tf.keras.applications.EfficientNetB6(include_top=True, weights=None, classes=classes,
                                                     input_shape=input_shape, classifier_activation='sigmoid')
     if name == "EfficientNetB7":
-        return tf.keras.applications.EfficientNetB0(include_top=True, weights=None, classes=classes,
+        return tf.keras.applications.EfficientNetB7(include_top=True, weights=None, classes=classes,
                                                     input_shape=input_shape, classifier_activation='sigmoid')
     return None

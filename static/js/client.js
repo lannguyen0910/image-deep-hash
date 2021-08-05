@@ -11,7 +11,7 @@ function clear() {
   $('#result-content').remove();   //remove result div (image + labels ...)
 }
 
-// Upload image or video session
+// Upload image
 function showPicked(input) {
 
   var extension = input.files[0].name.split(".")[1].toLowerCase();
