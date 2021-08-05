@@ -39,30 +39,81 @@ def long_to_bytes(val, endianness='big'):
 
 def load_backbone(name="ResNet50", input_shape=(224, 224, 3), classes=128):
     if name == "Xception":
-        return tf.keras.applications.Xception(include_top=False, weights=None, classes=classes,
+        return tf.keras.applications.Xception(include_top=True, weights=None, classes=classes,
                                               input_shape=input_shape, classifier_activation='sigmoid')
     if name == "VGG16":
-        return tf.keras.applications.VGG16(include_top=False, weights=None, classes=classes,
+        return tf.keras.applications.VGG16(include_top=True, weights=None, classes=classes,
                                            input_shape=input_shape, classifier_activation='sigmoid')
     if name == "VGG19":
-        return tf.keras.applications.VGG19(include_top=False, weights=None, classes=classes,
+        return tf.keras.applications.VGG19(include_top=True, weights=None, classes=classes,
                                            input_shape=input_shape, classifier_activation='sigmoid')
     if name == "ResNet50":
-        return tf.keras.applications.ResNet50(include_top=False, weights=None, classes=classes,
+        return tf.keras.applications.ResNet50(include_top=True, weights=None, classes=classes,
                                               input_shape=input_shape, classifier_activation='sigmoid')
     if name == "ResNet101":
-        return tf.keras.applications.ResNet101(include_top=False, weights=None, classes=classes,
+        return tf.keras.applications.ResNet101(include_top=True, weights=None, classes=classes,
                                                input_shape=input_shape, classifier_activation='sigmoid')
     if name == "ResNet152":
-        return tf.keras.applications.ResNet152(include_top=False, weights=None, classes=classes,
+        return tf.keras.applications.ResNet152(include_top=True, weights=None, classes=classes,
                                                input_shape=input_shape, classifier_activation='sigmoid')
     if name == "ResNet50V2":
-        return tf.keras.applications.ResNet50V2(include_top=False, weights=None, classes=classes,
+        return tf.keras.applications.ResNet50V2(include_top=True, weights=None, classes=classes,
                                                 input_shape=input_shape, classifier_activation='sigmoid')
     if name == "ResNet101V2":
-        return tf.keras.applications.ResNet101V2(include_top=False, weights=None, classes=classes,
+        return tf.keras.applications.ResNet101V2(include_top=True, weights=None, classes=classes,
                                                  input_shape=input_shape, classifier_activation='sigmoid')
     if name == "ResNet152V2":
-        return tf.keras.applications.ResNet152V2(include_top=False, weights=None, classes=classes,
+        return tf.keras.applications.ResNet152V2(include_top=True, weights=None, classes=classes,
                                                  input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "InceptionV3":
+        return tf.keras.applications.InceptionV3(include_top=True, weights=None, classes=classes,
+                                                 input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "InceptionResNetV2":
+        return tf.keras.applications.InceptionResNetV2(include_top=True, weights=None, classes=classes,
+                                                       input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "MobileNet":
+        return tf.keras.applications.MobileNet(include_top=True, weights=None, classes=classes,
+                                               input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "MobileNetV2":
+        return tf.keras.applications.MobileNetV2(include_top=True, weights=None, classes=classes,
+                                                 input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "DenseNet121":
+        return tf.keras.applications.DenseNet121(include_top=True, weights=None, classes=classes,
+                                                 input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "DenseNet169":
+        return tf.keras.applications.DenseNet169(include_top=True, weights=None, classes=classes,
+                                                 input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "DenseNet201":
+        return tf.keras.applications.DenseNet201(include_top=True, weights=None, classes=classes,
+                                                 input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "NASNetMobile":
+        return tf.keras.applications.NASNetMobile(include_top=True, weights=None, classes=classes,
+                                                  input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "NASNetLarge":
+        return tf.keras.applications.NASNetLarge(include_top=True, weights=None, classes=classes,
+                                                 input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "EfficientNetB0":
+        return tf.keras.applications.EfficientNetB0(include_top=True, weights=None, classes=classes,
+                                                    input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "EfficientNetB1":
+        return tf.keras.applications.EfficientNetB0(include_top=True, weights=None, classes=classes,
+                                                    input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "EfficientNetB2":
+        return tf.keras.applications.EfficientNetB0(include_top=True, weights=None, classes=classes,
+                                                    input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "EfficientNetB3":
+        return tf.keras.applications.EfficientNetB0(include_top=True, weights=None, classes=classes,
+                                                    input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "EfficientNetB4":
+        return tf.keras.applications.EfficientNetB0(include_top=True, weights=None, classes=classes,
+                                                    input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "EfficientNetB5":
+        return tf.keras.applications.EfficientNetB0(include_top=True, weights=None, classes=classes,
+                                                    input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "EfficientNetB6":
+        return tf.keras.applications.EfficientNetB0(include_top=True, weights=None, classes=classes,
+                                                    input_shape=input_shape, classifier_activation='sigmoid')
+    if name == "EfficientNetB7":
+        return tf.keras.applications.EfficientNetB0(include_top=True, weights=None, classes=classes,
+                                                    input_shape=input_shape, classifier_activation='sigmoid')
     return None

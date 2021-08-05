@@ -18,7 +18,8 @@ class ImageDeepHash:
 
     def hash(self, path):
         self.image = self.imageLoader.load(path)
-        self.list_digest = (self.model.predict(np.array([self.image]))[0] > 0.5).astype(np.int).tolist()
+        predict = self.model.predict(np.array([self.image]))[0]
+        self.list_digest = (predict > 0.5).astype(np.int).tolist()
 
     def digest(self):
         bin_str = "".join(map(str, self.list_digest))
