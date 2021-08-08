@@ -8,6 +8,8 @@ import os
 import hashlib
 import numpy as np
 
+from ImageDeepHash import ImageDeepHash
+
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
@@ -22,6 +24,7 @@ parser.add_argument('--debug', action='store_true',
 
 UPLOAD_FOLDER = './static/assets/uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+m = ImageDeepHash.ImageDeepHash()
 
 
 @app.route('/')
@@ -47,8 +50,8 @@ def analyze():
             img = cv2.imdecode(np_img, cv2.IMREAD_COLOR)
             cv2.imwrite(filepath, img)
 
-            # Add some code here ...
-            hash_seq = "0x82e7adf01f96f8f373e0c3caaa9a414a"
+            m.reset()
+            hash_seq = m.hash(filepath)
 
         filename = os.path.basename(filename)
         print('Filename: ', filename)
