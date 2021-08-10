@@ -23,26 +23,92 @@ parser.add_argument('--debug', action='store_true',
                     default=False, help="Run app in debug mode")
 
 UPLOAD_FOLDER = './static/assets/uploads'
+BLEND_FOLDER = './static/assets/blends'
+
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['BLEND_FOLDER'] = BLEND_FOLDER
+
 m = ImageDeepHash.ImageDeepHash()
 
 
 @app.route('/')
 def homepage():
-    return render_template("index.html")
+    return render_template("hash.html")
+
+
+@app.route('/compare')
+def about_page():
+    return render_template("compare.html")
 
 
 @app.route('/analyze', methods=['POST', 'GET'])
 def analyze():
     if request.method == 'POST':
-        if 'upload-button' in request.form:
+        if 'compare-button' in request.form:
+            f = request.files['file']
+            f2 = request.files['file2']
+
+            ori_file_name = secure_filename(f.filename)
+            _, ext = os.path.splitext(ori_file_name)
+            ori_file_name2 = secure_filename(f2.filename)
+            _, ext2 = os.path.splitext(ori_file_name2)
+
+            # Get cache name by hashing image
+            data = f.read()
+            print('ext: ', ext)
+            filename = hashlib.sha256(data).hexdigest() + f'{ext}'
+
+            data2 = f2.read()
+            filename2 = hashlib.sha256(data2).hexdigest() + f'{ext2}'
+
+            # save file to /static/uploads
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            np_img = np.fromstring(data, np.uint8)
+            img = cv2.imdecode(np_img, cv2.IMREAD_COLOR)
+
+            filepath2 = os.path.join(app.config['UPLOAD_FOLDER'], filename2)
+            np_img2 = np.fromstring(data2, np.uint8)
+            img2 = cv2.imdecode(np_img2, cv2.IMREAD_COLOR)
+
+            cv2.imwrite(filepath, img)
+            cv2.imwrite(filepath2, img2)
+
+            # Resize for blending 2 images
+            img = cv2.resize(img, (480, 640))
+            img2 = cv2.resize(img2, (480, 640))
+
+            filename_blend = hashlib.sha256(data + data2).hexdigest() + '.jpg'
+            filepath_blend = os.path.join(
+                app.config['BLEND_FOLDER'], filename_blend)
+
+            # Blending
+            img_blend = cv2.addWeighted(img, 0.5, img2, 0.5, 0)
+
+            cv2.imwrite(filepath_blend, img_blend)
+
+            # Add compare image code here ...
+            # m.reset()
+            # hash_seq = m.hash(filepath)
+            compare_result = "Similar"
+
+            filename = os.path.basename(filename)
+            filename2 = os.path.basename(filename2)
+            filename_blend = os.path.basename(filename_blend)
+
+            print('Compare filename 1: ', filename)
+            print('Compare filename 2: ', filename2)
+            print('Compare filename blend: ', filename_blend)
+
+            return render_template('analyze_compare.html', result=compare_result, fname=filename, fname2=filename2, fname_blend=filename_blend)
+
+        if 'hash-button' in request.form:
             f = request.files['file']
             ori_file_name = secure_filename(f.filename)
             _, ext = os.path.splitext(ori_file_name)
 
             # Get cache name by hashing image
             data = f.read()
-            filename = hashlib.md5(data).hexdigest() + f'{ext}'
+            filename = hashlib.sha256(data).hexdigest() + f'{ext}'
 
             # save file to /static/uploads
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
@@ -50,12 +116,14 @@ def analyze():
             img = cv2.imdecode(np_img, cv2.IMREAD_COLOR)
             cv2.imwrite(filepath, img)
 
+            # Hashing
             m.reset()
             hash_seq = m.hash(filepath)
 
-        filename = os.path.basename(filename)
-        print('Filename: ', filename)
-        return render_template('analyze.html', hash_seq=hash_seq, fname=filename)
+            filename = os.path.basename(filename)
+            print('Hash filename: ', filename)
+
+            return render_template('analyze_hash.html', hash_seq=hash_seq, fname=filename)
 
     return redirect('/')
 
@@ -72,6 +140,8 @@ def add_header(response):
 if __name__ == '__main__':
     if not os.path.exists(UPLOAD_FOLDER):
         os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+    if not os.path.exists(BLEND_FOLDER):
+        os.makedirs(BLEND_FOLDER, exist_ok=True)
 
     args = parser.parse_args()
 
