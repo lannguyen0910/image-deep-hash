@@ -3,3 +3,4 @@ Flask
 numpy
 opencv-python
 matplotlib
+tensorflow
