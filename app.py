@@ -9,6 +9,7 @@ import hashlib
 import numpy as np
 
 from ImageDeepHash import ImageDeepHash
+from ImageDeepHash import ImageDeepCompare
 
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
@@ -28,7 +29,8 @@ BLEND_FOLDER = './static/assets/blends'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['BLEND_FOLDER'] = BLEND_FOLDER
 
-m = ImageDeepHash.ImageDeepHash()
+m_hash = ImageDeepHash.ImageDeepHash()
+m_compare = ImageDeepCompare.ImageDeepCompare()
 
 
 @app.route('/')
@@ -87,9 +89,8 @@ def analyze():
             cv2.imwrite(filepath_blend, img_blend)
 
             # Add compare image code here ...
-            # m.reset()
-            # hash_seq = m.hash(filepath)
-            compare_result = "Similar"
+
+            compare_result = str(m_compare.compare(filepath, filepath2, "euclidean"))
 
             filename = os.path.basename(filename)
             filename2 = os.path.basename(filename2)
@@ -117,8 +118,8 @@ def analyze():
             cv2.imwrite(filepath, img)
 
             # Hashing
-            m.reset()
-            hash_seq = m.hash(filepath)
+            m_hash.reset()
+            hash_seq = m_hash.hash(filepath)
 
             filename = os.path.basename(filename)
             print('Hash filename: ', filename)

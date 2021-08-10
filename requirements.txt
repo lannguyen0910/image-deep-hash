@@ -3,4 +3,6 @@ Flask
 numpy
 opencv-python
 matplotlib
+scikit-learn
+tensorflow
 tensorflow
