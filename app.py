@@ -119,7 +119,8 @@ def analyze():
 
             # Hashing
             m_hash.reset()
-            hash_seq = m_hash.hash(filepath)
+            m_hash.hash(filepath)
+            hash_seq = m_hash.hexdigest()
 
             filename = os.path.basename(filename)
             print('Hash filename: ', filename)
