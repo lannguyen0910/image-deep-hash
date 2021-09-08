@@ -76,8 +76,8 @@ def analyze():
             cv2.imwrite(filepath2, img2)
 
             # Resize for blending 2 images
-            img = cv2.resize(img, (480, 640))
-            img2 = cv2.resize(img2, (480, 640))
+            img = cv2.resize(img, (480, 600))
+            img2 = cv2.resize(img2, (480, 600))
 
             filename_blend = hashlib.sha256(data + data2).hexdigest() + '.jpg'
             filepath_blend = os.path.join(
@@ -88,9 +88,9 @@ def analyze():
 
             cv2.imwrite(filepath_blend, img_blend)
 
-            # Add compare image code here ...
-
-            compare_result = str(m_compare.compare(filepath, filepath2, "euclidean"))
+            # Add compare image code here
+            compare_result = str(m_compare.compare(
+                filepath, filepath2, "euclidean"))
 
             filename = os.path.basename(filename)
             filename2 = os.path.basename(filename2)
@@ -100,7 +100,7 @@ def analyze():
             print('Compare filename 2: ', filename2)
             print('Compare filename blend: ', filename_blend)
 
-            return render_template('analyze_compare.html', result=compare_result, fname=filename, fname2=filename2, fname_blend=filename_blend)
+            return render_template('analyze-compare.html', result=compare_result, fname=filename, fname2=filename2, fname_blend=filename_blend)
 
         if 'hash-button' in request.form:
             f = request.files['file']
@@ -125,7 +125,7 @@ def analyze():
             filename = os.path.basename(filename)
             print('Hash filename: ', filename)
 
-            return render_template('analyze_hash.html', hash_seq=hash_seq, fname=filename)
+            return render_template('analyze-hash.html', hash_seq=hash_seq, fname=filename)
 
     return redirect('/')
 
@@ -159,3 +159,5 @@ if __name__ == '__main__':
             port = hostname[1]
         host = hostname[0]
         app.run(host=host, port=port, debug=args.debug, use_reloader=False)
+
+# python app.py --host localhost:8000

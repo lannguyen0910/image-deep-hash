@@ -13,14 +13,15 @@
 
   <body>
     <div class="w3-top" style="position:relative;">
-      <div class="w3-bar w3-black w3-wide w3-padding w3-card" style="font-size:15px;font-family:Verdana, sans-serif;margin:0">
-        <a href="/" class="w3-bar-item w3-button" style="font-size:18px;text-decoration:none;font-family:Verdana, sans-serif;"><b>Image Hash</b></a>     
-        <a href="/compare" class="w3-bar-item w3-button" style="font-size:18px;float:right;text-decoration:none;font-family:Verdana, sans-serif;">Image Compare</a>       
-      </div>
+        <div class="w3-bar w3-black w3-wide w3-padding w3-card" style="font-size:15px;font-family:Verdana, sans-serif;margin:0">
+            <a href="/" class="w3-bar-item w3-button" style="font-size:18px;text-decoration:none;font-family:Verdana, sans-serif;"><b>Image Hash</b></a>     
+            <a href="/compare" class="w3-bar-item w3-button" style="font-size:18px;float:right;text-decoration:none;font-family:Verdana, sans-serif;">Image Compare</a>       
+        </div>
     </div>
 
 
     <div class='center' style="position:relative;">
+    {% block content %}
       <div class="panel panel-default result-panel">
         <div class="panel-body w3-card">
           <div class='content'>
@@ -42,6 +43,11 @@
                       onchange='showPicked2(this)'>
               </div>
 
+
+              <!-- <div class='upload-label'>
+                <label id='upload-label'></label>
+              </div> -->
+
               <div class="row">
                 <div class="col-sm-6">
                   <div class="card">
@@ -49,7 +55,9 @@
                       <h5 class="card-title">Image 1</h5>
                       <button class='btn btn-primary' type='button' onclick='showPicker()'>Upload File</button>
                       <p class="card-text" id="upload-label"></p>
-                      <div id='image-display'></div>
+                      <div id='image-display'>
+                          <img id="upload-image" src="{{url_for('static', filename='assets/uploads/' + fname)}}" style="display: block;margin-left: auto;margin-right: auto;width: 600px; height: 480px">
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -59,7 +67,9 @@
                       <h5 class="card-title">Image 2</h5>
                       <button class='btn btn-primary' type='button' onclick='showPicker2()'>Upload File</button>
                       <p class="card-text" id="upload-label2"></p>
-                      <div id='image-display2'></div>
+                      <div id='image-display2'>
+                        <img id="upload-image2" src="{{url_for('static', filename='assets/uploads/' + fname2)}}" style="display: block;margin-left: auto;margin-right: auto;width: 600px; height: 480px">
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -73,6 +83,31 @@
           </div>
         </div>
       </div>
+
+        <div id='result-content'>
+            <div class="row">
+                <div class="col-md-12">
+                  <div class="panel panel-default result-panel">
+                    <div class="panel-body result-card">
+                        <h5 class="card-title">Image Blend</h5>
+                        <img id="image-blend" src="{{url_for('static', filename='assets/blends/' + fname_blend)}}" style="display: block;margin-left: auto;margin-right: auto;width: 600px; height: 480px">
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default result-panel">
+                <div class="panel-body w3-card">
+                    <div style="text-align: center;font-size:20px;">
+                        <p>Compare Result</p>
+                    </div>
+                    <div style="text-align: center;font-size:16px;">
+                        <b>{{result}}</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
     </div>
 
 

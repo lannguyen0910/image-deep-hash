@@ -37,7 +37,7 @@ function showPicked(input) {
     var file_url = e.target.result
 
     if(extension === "jpg" || extension === "jpeg" || extension === "png"){
-      var img_html = '<img id="upload-image" src="' + file_url + '" style="display: block;margin-left: auto;margin-right: auto;width: 640px; height: 480px"/>';
+      var img_html = '<img id="upload-image" src="' + file_url + '" style="display: block;margin-left: auto;margin-right: auto;width: 600px; height: 480px"/>';
       $('#image-display').html(img_html); // replaces previous img
     }  
     upload1 = true;
@@ -61,7 +61,7 @@ function showPicked2(input) {
     var file_url = e.target.result
 
     if(extension === "jpg" || extension === "jpeg" || extension === "png"){
-      var img_html = '<img id="upload-image2" src="' + file_url + '" style="display: block;margin-left: auto;margin-right: auto;width: 640px; height: 480px"/>';
+      var img_html = '<img id="upload-image2" src="' + file_url + '" style="display: block;margin-left: auto;margin-right: auto;width: 600px; height: 480px"/>';
       $('#image-display2').html(img_html); // replaces previous img
     }  
     upload2 = true;
