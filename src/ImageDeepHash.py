@@ -2,12 +2,16 @@ import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
 
-from ImageDeepHash.utils.utils import *
-from ImageDeepHash.ImageLoader import ImageLoader
-from ImageDeepHash.ModelFactory import ModelFactory
+from src.utils.utils import *
+from src.ImageLoader import ImageLoader
+from src.ModelFactory import ModelFactory
 
 
 class ImageDeepHash:
+    """
+    Image Deep Hash implementation
+    """
+
     def __init__(self, weight="VGG16", hex_len=16, root="./", image_size=(224, 224, 3)):
         self.hex_len = hex_len
         self.root = root
@@ -17,7 +21,8 @@ class ImageDeepHash:
         self.image = np.zeros(self.image_size)
         self.list_digest = [0]*self.hex_len*8
 
-        self.model = self.model_factory.order(name=weight, input_shape=self.image_size, classes=self.hex_len*8)
+        self.model = self.model_factory.order(
+            name=weight, input_shape=self.image_size, classes=self.hex_len*8)
         self.continuous_layer = tf.keras.Sequential(
             tf.keras.layers.Dense(self.hex_len*8, activation="sigmoid")
         )
@@ -29,7 +34,8 @@ class ImageDeepHash:
         self.image = self.imageLoader.load(path)
         predict = self.model.predict(np.array([self.image]))[0]
         predict = (predict > 0.5).astype(np.int).tolist()
-        predict = self.continuous_layer.predict(np.array([self.list_digest + predict]))[0]
+        predict = self.continuous_layer.predict(
+            np.array([self.list_digest + predict]))[0]
         self.list_digest = (predict > 0.5).astype(np.int).tolist()
 
     def digest(self):

@@ -8,8 +8,8 @@ import os
 import hashlib
 import numpy as np
 
-from ImageDeepHash import ImageDeepHash
-from ImageDeepHash import ImageDeepCompare
+from src import ImageDeepHash
+from src import ImageDeepCompare
 
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
@@ -46,6 +46,12 @@ def about_page():
 @app.route('/analyze', methods=['POST', 'GET'])
 def analyze():
     if request.method == 'POST':
+        # Get input in form
+        model_types = request.form.get('model-types')
+        model_types = str(model_types)
+        print("model: ", model_types)
+
+
         if 'compare-button' in request.form:
             f = request.files['file']
             f2 = request.files['file2']
@@ -89,8 +95,15 @@ def analyze():
             cv2.imwrite(filepath_blend, img_blend)
 
             # Add compare image code here
+            if model_types != 'VGG16':
+                m_compare = ImageDeepCompare.ImageDeepCompare(
+                    weight=model_types)
+
+            metric_types = request.form.get('metric-types')
+            metric_types = str(metric_types)
+            print("metric: ", metric_types)
             compare_result = str(m_compare.compare(
-                filepath, filepath2, "euclidean"))
+                filepath, filepath2, metric_types))
 
             filename = os.path.basename(filename)
             filename2 = os.path.basename(filename2)
@@ -118,6 +131,14 @@ def analyze():
             cv2.imwrite(filepath, img)
 
             # Hashing
+            hex_len = request.form.get('length-range')
+            hex_len = int(hex_len)
+            print("hex len: ", hex_len)
+
+            if hex_len != 16 and model_types != 'VGG16':
+                m_hash = ImageDeepHash.ImageDeepHash(
+                    weight=model_types, hex_len=hex_len)
+
             m_hash.reset()
             m_hash.hash(filepath)
             hash_seq = m_hash.hexdigest()

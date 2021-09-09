@@ -31,3 +31,10 @@ function showPicked(input) {
     detectBtn.removeAttribute("disabled");
     reader.readAsDataURL(input.files[0]);
 }
+
+window.onload = function(){
+  $('#length-range').on('input', function() {
+    $('#length-text span').html(this.value);
+    threshold = $('#length-range').val() / 60;
+  });
+}

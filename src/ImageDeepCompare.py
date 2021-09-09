@@ -2,8 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from sklearn.metrics import pairwise_distances
-from ImageDeepHash.ImageLoader import ImageLoader
-from ImageDeepHash.ModelFactory import ModelFactory
+from src.ImageLoader import ImageLoader
+from src.ModelFactory import ModelFactory
 
 
 class ImageDeepCompare:

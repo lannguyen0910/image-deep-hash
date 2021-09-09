@@ -1,6 +1,6 @@
 import os
 import tensorflow as tf
-from ImageDeepHash.utils.utils import *
+from src.utils.utils import *
 
 
 class ModelFactory:
@@ -44,7 +44,8 @@ class ModelFactory:
         elif name in self.factory:
             return load_backbone(name="ResNet50", input_shape=input_shape, classes=classes)
         elif os.path.isfile(name):
-            self.flexible_model["custom_model"+str(len(self.flexible_model))] = name
+            self.flexible_model["custom_model" +
+                                str(len(self.flexible_model))] = name
             if name.endswith(".py"):
                 return self.load_message_broker_model(name)
             else:
