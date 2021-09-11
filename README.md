@@ -21,7 +21,7 @@ python app.py --host=localhost:3000
 ```
 
 ## 🌟 **Run using Google Colab**
-Open notebook and follow the instructions [![Notebook](https://colab.research.google.com/drive/1N2AyKf_G8ImdRdpgpzLbyQf0PgH7jwlt?usp=sharing)
+Open notebook and follow the instructions [![Notebook](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1N2AyKf_G8ImdRdpgpzLbyQf0PgH7jwlt?usp=sharing)
 
 ## 🌟 **Deep Hash**
 Hash an image and return to a hash sequence which its hex length is modifiable. Go to <a href="https://github.com/lannguyen0910/image-deep-hash/blob/main/examples/hash/hash_tutorial.ipynb">hash_tutorial</a> and <a href="https://github.com/lannguyen0910/image-deep-hash/blob/main/src/ImageDeepHash.py">hash_module</a> for more information
