@@ -29,6 +29,7 @@ BLEND_FOLDER = './static/assets/blends'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['BLEND_FOLDER'] = BLEND_FOLDER
 
+global m_hash, m_compare
 m_hash = ImageDeepHash.ImageDeepHash()
 m_compare = ImageDeepCompare.ImageDeepCompare()
 
@@ -50,7 +51,6 @@ def analyze():
         model_types = request.form.get('model-types')
         model_types = str(model_types)
         print("model: ", model_types)
-
 
         if 'compare-button' in request.form:
             f = request.files['file']
@@ -109,11 +109,7 @@ def analyze():
             filename2 = os.path.basename(filename2)
             filename_blend = os.path.basename(filename_blend)
 
-            print('Compare filename 1: ', filename)
-            print('Compare filename 2: ', filename2)
-            print('Compare filename blend: ', filename_blend)
-
-            return render_template('analyze-compare.html', result=compare_result, fname=filename, fname2=filename2, fname_blend=filename_blend)
+            return render_template('analyze-compare.html', metric=metric_types, result=compare_result, fname=filename, fname2=filename2, fname_blend=filename_blend)
 
         if 'hash-button' in request.form:
             f = request.files['file']
@@ -144,7 +140,6 @@ def analyze():
             hash_seq = m_hash.hexdigest()
 
             filename = os.path.basename(filename)
-            print('Hash filename: ', filename)
 
             return render_template('analyze-hash.html', hash_seq=hash_seq, fname=filename)
 

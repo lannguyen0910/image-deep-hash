@@ -24,62 +24,63 @@
         <div class="panel-body w3-card">
           <div class='content'>
             <form id="file-upload" action = "{{ url_for('analyze') }}" method = "POST" enctype="multipart/form-data">
-              <div class="row">
-                <div class="col-md-3">
-                  <div id="canvas-tools" class="panel panel-default">
-                    <div class="panel-body">
-                      <div id="length-text">
-                        <b>Hash sequence hex length:</b>
-                        <span>16</span>%
-                      </div>
-                      <input id="length-range" type="range" min="4" max="64" value="16" class="slider" name="length-range">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="model-types">Choose a model</label>
+                      <br/>
+                      <select name="model-types" class="form-control-sm" id="model-types">
+                        <option>VGG16</option>
+                        <option>ResNet152</option>
+                        <option>Xception</option>
+                        <option>VGG19</option>
+                        <option>ResNet50</option>
+
+                        <option>ResNet101</option>
+                        <option>ResNet50V2</option>
+                        <option>ResNet101V2</option>
+                        <option>ResNet152V2</option>
+
+
+                        <option>InceptionV3</option>
+                        <option>InceptionResNetV2</option>
+                        <option>MobileNet</option>
+                        <option>MobileNetV2</option>
+
+                        <option>DenseNet121</option>
+                        <option>DenseNet169</option>
+                        <option>DenseNet201</option>
+                        <option>NASNetMobile</option>
+
+                        <option>NASNetLarge</option>
+                        <option>EfficientNetB0</option>
+                        <option>EfficientNetB1</option>
+                        <option>EfficientNetB2</option>
+
+                        <option>EfficientNetB3</option>
+                        <option>EfficientNetB4</option>
+                        <option>EfficientNetB5</option>
+                        <option>EfficientNetB6</option>
+
+                        <option>EfficientNetB7</option>
+                      </select>
                     </div>
                   </div>
                 </div>
-
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label for="model-types">Choose a model</label>
-                    <br/>
-                    <select name="model-types" class="form-control-sm" id="model-types">
-                      <option>VGG16</option>
-
-                      <option>ResNet152</option>
-                      <option>Xception</option>
-                      <option>VGG19</option>
-                      <option>ResNet50</option>
-
-                      <option>ResNet101</option>
-                      <option>ResNet50V2</option>
-                      <option>ResNet101V2</option>
-                      <option>ResNet152V2</option>
-
-
-                      <option>InceptionV3</option>
-                      <option>InceptionResNetV2</option>
-                      <option>MobileNet</option>
-                      <option>MobileNetV2</option>
-
-                      <option>DenseNet121</option>
-                      <option>DenseNet169</option>
-                      <option>DenseNet201</option>
-                      <option>NASNetMobile</option>
-
-                      <option>NASNetLarge</option>
-                      <option>EfficientNetB0</option>
-                      <option>EfficientNetB1</option>
-                      <option>EfficientNetB2</option>
-
-                      <option>EfficientNetB3</option>
-                      <option>EfficientNetB4</option>
-                      <option>EfficientNetB5</option>
-                      <option>EfficientNetB6</option>
-
-                      <option>EfficientNetB7</option>
-                    </select>
+                <div class="row">
+                  <div class="col-md-3">
+                    <div id="canvas-tools" class="panel panel-default">
+                      <div class="panel-body">
+                        <div id="length-text">
+                          <b>Hash sequence hex length:</b>
+                          <span>16</span>
+                        </div>
+                        <input id="length-range" type="range" min="4" max="64" value="16" class="slider" name="length-range">
+                      </div>
+                    </div>
                   </div>
                 </div>
-
               </div>
 
               <div class='no-display'>
