@@ -26,17 +26,57 @@ Open notebook and follow the instructions [![Notebook](https://colab.research.go
 ## 🌟 **Deep Hash**
 Hash an image and return to a hash sequence which its hex length is modifiable. Go to <a href="https://github.com/lannguyen0910/image-deep-hash/blob/main/examples/hash/hash_tutorial.ipynb">hash_tutorial</a> and <a href="https://github.com/lannguyen0910/image-deep-hash/blob/main/src/ImageDeepHash.py">hash_module</a> for more information
 
-ex1 | ex2
---- | ---
-![hash1](examples/images/hash_1.PNG) | ![hash1](examples/images/hash_2.PNG)
+```python
+from src import ImageDeepHash
+
+m = ImageDeepHash.ImageDeepHash()
+m.hash("ILSVRC2012_val_00005002.jpeg")
+print(m.digest())
+print(m.hexdigest())
+m.plot()
+```
+
+<p align="center">
+  <img src="./examples/images/Hash_From_Code_1.PNG" width="300" title="Compare example 1">
+</p>
+
+```python
+m.reset()
+m.hash("ILSVRC2012_val_00005002_noise.jpeg")
+print(m.digest())
+print(m.hexdigest())
+m.plot()
+```
+
+<p align="center">
+  <img src="./examples/images/Hash_From_Code_2.PNG" width="300" title="Compare example 1">
+</p>
+
+<b>Run on <a href="https://github.com/lannguyen0910/image-deep-hash/blob/main/app.py">web</a></b>:
+<p align="center">
+  <img src="./examples/images/hash_1.PNG" width="400" title="Compare example 1">
+  <img src="./examples/images/hash_2.PNG" width="400" title="Compare example 2">
+</p>
 
 ## 🌟 **Deep Compare**
 Hash 2 images and evaluate the difference using some appropriate metrics for comparision. Go to <a href="https://github.com/lannguyen0910/image-deep-hash/blob/main/examples/compare/compare_tutorial.ipynb">compare_tutorial</a> and <a href="https://github.com/lannguyen0910/image-deep-hash/blob/main/src/ImageDeepCompare.py">compare_module</a> for more information
 
-input1 | result1
---- | ---
-![compare11](examples/images/compare_1.PNG) | ![compare12](examples/images/compare_2.PNG)
+```python
+from src import ImageDeepCompare
 
-input2 | result2
---- | ---
-![compare11](examples/images/compare_3.PNG) | ![compare12](examples/images/compare_4.PNG)
+m = ImageDeepCompare.ImageDeepCompare()
+print("Distance:", m.compare("ILSVRC2012_val_00005002.jpeg", "ILSVRC2012_val_00005002_noise.jpeg", "euclidean"))
+m.plot()
+```
+
+<p align="center">
+  <img src="./examples/images/Compare_From_Code.PNG" width="500" title="Compare example 1">
+</p>
+ 
+<b>Run on <a href="https://github.com/lannguyen0910/image-deep-hash/blob/main/app.py">web</a></b>:
+<p align="center">
+  <img src="./examples/images/compare_1.PNG?raw=True" width="600" title="Compare example 1">
+  </br>
+  <img src="./examples/images/compare_2.PNG?raw=True" width="300" alt="Compare example 1 result">
+</p>
+
