@@ -10,13 +10,25 @@ print(m.hexdigest())
 m.plot()
 ```
 <p align="center">
-  <img src="./examples/images/Hash_From_Code.PNG" width="300" title="Compare example 1">
+  <img src="./examples/images/Hash_From_Code_1.PNG" width="300" title="Compare example 1">
+</p>
+
+```python
+m.reset()
+m.hash("ILSVRC2012_val_00005002_noise.jpeg")
+print(m.digest())
+print(m.hexdigest())
+m.plot()
+```
+
+<p align="center">
+  <img src="./examples/images/Hash_From_Code_2.PNG" width="300" title="Compare example 1">
 </p>
 
 <b>Or using <a href="https://github.com/ffyyytt/ImageDeepHash#run-using-google-colab-with-ngrok">website</a></b>:
 <p align="center">
-  <img src="./examples/images/hash_1.PNG" width="450" title="Compare example 1">
-  <img src="./examples/images/hash_2.PNG" width="450" alt="Compare example 1 result">
+  <img src="./examples/images/hash_1.PNG" width="400" title="Compare example 1">
+  <img src="./examples/images/hash_2.PNG" width="400" title="Compare example 2">
 </p>
 
 ## Deep Compare
