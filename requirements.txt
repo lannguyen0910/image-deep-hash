@@ -1,4 +1,4 @@
-flask_ngrok
+flask-ngrok
 Flask
 numpy
 opencv-python
