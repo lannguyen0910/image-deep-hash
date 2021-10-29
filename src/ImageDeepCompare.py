@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import pairwise_distances
 from src.ImageLoader import ImageLoader
 from src.ModelFactory import ModelFactory
+from scipy.spatial.distance import hamming
 
 
 class ImageDeepCompare:
@@ -16,7 +17,8 @@ class ImageDeepCompare:
         self.image1 = np.zeros(self.image_size)
         self.image2 = np.zeros(self.image_size)
 
-        self.model = self.model_factory.order(name=weight, input_shape=self.image_size, classes=2048)
+        self.model = self.model_factory.order(
+            name=weight, input_shape=self.image_size, classes=2048)
 
     def compare(self, path1, path2, metric="euclidean"):
         self.image1 = self.imageLoader.load(path1)
@@ -24,6 +26,10 @@ class ImageDeepCompare:
 
         predict1 = self.model.predict(np.array([self.image1]))
         predict2 = self.model.predict(np.array([self.image2]))
+
+        if metric == 'hamming':
+            return hamming(predict1, predict2)
+
         return pairwise_distances(predict1, predict2, metric=metric)[0][0]
 
     def plot(self):
