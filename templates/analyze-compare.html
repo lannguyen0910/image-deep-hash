@@ -28,7 +28,7 @@
               <div class="container">
                 <div class="row">
                   <div class="col">
-                    <div class="col-md-4">
+                    <div class="col-md-auto">
                       <div class="form-group">
                         <label for="model-types">Choose a model</label>
                         <br/>
@@ -72,7 +72,7 @@
                   </div>
 
                   <div class="col">
-                    <div class="col-md-8">
+                    <div class="col-md-auto">
                       <div class="form-group">
                         <label for="metric-types">Metric to eval</label>
                         <br/>
@@ -165,8 +165,10 @@
                         <p>Compare result with {{metric}} metric</p>
                     </div>
                     <div style="text-align: center;font-size:16px;">
-                        <b>{{result}}</b>
+                        <h4><b>{{result}}</b></h4>
+                        <b>The closer the value to 0, the more similar the images</b>
                     </div>
+                    
                 </div>
             </div>
         </div>
