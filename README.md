@@ -1,4 +1,5 @@
-# **Image Deep Hash**
+<h1 align="center"> Image Deep Hash </h1>
+
 **Information Integrity Checking** is one of the important uses of hash functions. However, current hash functions such as **SHA**, **MD**, etc. only tell us the integrity of the file, but do not tell us how much the information has changed.
 
 ---
