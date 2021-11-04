@@ -29,18 +29,20 @@ BLEND_FOLDER = './static/assets/blends'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['BLEND_FOLDER'] = BLEND_FOLDER
 
-global m_hash, m_compare
-m_hash = ImageDeepHash.ImageDeepHash()
-m_compare = ImageDeepCompare.ImageDeepCompare()
+M_HASH = None
+M_COMPARE = None
+HASH_MODEL_TYPES = None
+HASH_HEX_LEN = None
+COMPARE_MODEL_TYPES = None
 
 
 @app.route('/')
-def homepage():
+def hash_page():
     return render_template("hash.html")
 
 
 @app.route('/compare')
-def about_page():
+def compare_page():
     return render_template("compare.html")
 
 
@@ -53,6 +55,9 @@ def analyze():
         print("model: ", model_types)
 
         if 'compare-button' in request.form:
+            global M_COMPARE, COMPARE_MODEL_TYPES
+            COMPARE_MODEL_TYPES = model_types
+
             f = request.files['file']
             f2 = request.files['file2']
 
@@ -94,15 +99,17 @@ def analyze():
 
             cv2.imwrite(filepath_blend, img_blend)
 
-            # Add compare image code here
-            if model_types != 'VGG16':
-                m_compare = ImageDeepCompare.ImageDeepCompare(
-                    weight=model_types)
+            # Comparing
+            if M_COMPARE is None or model_types != COMPARE_MODEL_TYPES:
+                M_COMPARE = ImageDeepCompare.ImageDeepCompare(
+                    weight=COMPARE_MODEL_TYPES)
 
             metric_types = request.form.get('metric-types')
             metric_types = str(metric_types)
             print("metric: ", metric_types)
-            compare_result = str(m_compare.compare(
+
+            # Evaluating
+            compare_result = str(M_COMPARE.compare(
                 filepath, filepath2, metric_types))
 
             filename = os.path.basename(filename)
@@ -112,6 +119,9 @@ def analyze():
             return render_template('analyze-compare.html', metric=metric_types, result=compare_result, fname=filename, fname2=filename2, fname_blend=filename_blend)
 
         if 'hash-button' in request.form:
+            global M_HASH, HASH_MODEL_TYPES, HASH_HEX_LEN
+            HASH_MODEL_TYPES = model_types
+
             f = request.files['file']
             ori_file_name = secure_filename(f.filename)
             _, ext = os.path.splitext(ori_file_name)
@@ -129,15 +139,16 @@ def analyze():
             # Hashing
             hex_len = request.form.get('length-range')
             hex_len = int(hex_len)
+            HASH_HEX_LEN = hex_len
             print("hex len: ", hex_len)
 
-            if hex_len != 16 and model_types != 'VGG16':
-                m_hash = ImageDeepHash.ImageDeepHash(
-                    weight=model_types, hex_len=hex_len)
+            if M_HASH is None or (hex_len != HASH_HEX_LEN and model_types != HASH_MODEL_TYPES):
+                M_HASH = ImageDeepHash.ImageDeepHash(
+                    weight=HASH_MODEL_TYPES, hex_len=HASH_HEX_LEN)
 
-            m_hash.reset()
-            m_hash.hash(filepath)
-            hash_seq = m_hash.hexdigest()
+            M_HASH.reset()
+            M_HASH.hash(filepath)
+            hash_seq = M_HASH.hexdigest()
 
             filename = os.path.basename(filename)
 
