@@ -20,6 +20,10 @@ pip install -r requirements.txt
 ```
 python app.py --host=localhost:3000
 ```
+- Or use this command to clear cache after running.
+```
+run.bat
+```
 
 ## 🌟 **Run using Google Colab**
 Open notebook and follow the instructions [![Notebook](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1N2AyKf_G8ImdRdpgpzLbyQf0PgH7jwlt?usp=sharing)
