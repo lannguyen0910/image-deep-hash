@@ -19,7 +19,7 @@ parser = argparse.ArgumentParser('Image Deep Hash')
 parser.add_argument('--ngrok', action='store_true',
                     default=False, help="Run on local or ngrok")
 parser.add_argument('--host',  type=str,
-                    default='192.168.23.1:4000', help="Local IP")
+                    default='localhost:4000', help="Local IP")
 parser.add_argument('--debug', action='store_true',
                     default=False, help="Run app in debug mode")
 
