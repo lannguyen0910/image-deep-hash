@@ -42,7 +42,7 @@ m.plot()
 ```
 
 <p align="center">
-  <img src="./examples/images/Hash_From_Code_1.PNG" width="300" title="Compare example 1">
+  <img src="./demo/Hash_From_Code_1.PNG" width="300" title="Compare example 1">
 </p>
 
 ```python
@@ -54,13 +54,13 @@ m.plot()
 ```
 
 <p align="center">
-  <img src="./examples/images/Hash_From_Code_2.PNG" width="300" title="Compare example 1">
+  <img src="./demo/Hash_From_Code_2.PNG" width="300" title="Compare example 1">
 </p>
 
 <b>Run on <a href="https://github.com/lannguyen0910/image-deep-hash/blob/main/app.py">web</a></b>:
 <p align="center">
-  <img src="./examples/images/hash_1.PNG" width="400" title="Compare example 1">
-  <img src="./examples/images/hash_2.PNG" width="400" title="Compare example 2">
+  <img src="./demo/hash_1.PNG" width="400" title="Compare example 1">
+  <img src="./demo/hash_2.PNG" width="400" title="Compare example 2">
 </p>
 
 ## 🌟 **Deep Compare**
@@ -75,13 +75,13 @@ m.plot()
 ```
 
 <p align="center">
-  <img src="./examples/images/Compare_From_Code.PNG" width="500" title="Compare example 1">
+  <img src="./demo/Compare_From_Code.PNG" width="500" title="Compare example 1">
 </p>
  
 <b>Run on <a href="https://github.com/lannguyen0910/image-deep-hash/blob/main/app.py">web</a></b>:
 <p align="center">
-  <img src="./examples/images/compare_1.PNG?raw=True" width="600" title="Compare example 1">
+  <img src="./demo/compare_1.PNG?raw=True" width="600" title="Compare example 1">
   </br>
-  <img src="./examples/images/compare_2.PNG?raw=True" width="300" alt="Compare example 1 result">
+  <img src="./demo/compare_2.PNG?raw=True" width="300" alt="Compare example 1 result">
 </p>
 
